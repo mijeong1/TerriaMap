@@ -23,9 +23,6 @@
     "type": "git",
     "url": "http://github.com/TerriaJS/TerriaMap"
   },
-  "dependencies": {
-    "terriajs-server": "^4.0.0"
-  },
   "config": {
     "docker": {
       "name": "terriamap",
@@ -41,7 +38,8 @@
     "@types/node": "^18.15.11",
     "@types/css-font-loading-module": "^0.0.13"
   },
-  "devDependencies": {
+  "dependencies": {
+    "terriajs-server": "^4.0.0",
     "@babel/core": "^7.23.5",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-env": "^7.23.5",
@@ -80,8 +78,8 @@
     "semver": "^5.0.0",
     "style-loader": "^0.23.1",
     "svg-sprite-loader": "^6.0.11",
-    "terriajs": "8.7.5",
-    "terriajs-cesium": "8.0.0",
+    "terriajs": "file:packages/terriajs",
+    "terriajs-cesium": "file:packages/cesium/packages/engine",
     "terriajs-plugin-api": "0.0.1-alpha.16",
     "terriajs-plugin-sample": "0.0.1-alpha.7",
     "ts-loader": "^5.3.3",
