@@ -4,6 +4,8 @@
     "packages": [
       "packages/terriajs",
       "packages/cesium",
+      "packages/cesium/packages/widgets",
+      "packages/cesium/packages/engine",
       "packages/terriajs-server",
       "packages/plugin-api",
       "packages/plugin-sample"
@@ -78,8 +80,9 @@
     "semver": "^5.0.0",
     "style-loader": "^0.23.1",
     "svg-sprite-loader": "^6.0.11",
-    "terriajs": "file:packages/terriajs",
-    "terriajs-cesium": "file:packages/cesium/packages/engine",
+    "terriajs": "8.7.5",
+    "terriajs-cesium": "8.0.0",
+    "terriajs-cesium-widgets": "5.0.0",
     "terriajs-plugin-api": "0.0.1-alpha.16",
     "terriajs-plugin-sample": "0.0.1-alpha.7",
     "ts-loader": "^5.3.3",
@@ -93,12 +96,14 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "preinstall": "yarn workspace cesium install && yarn cesium-build",
+    "cesium-build": "yarn workspace cesium build && yarn workspace cesium build-apps && yarn workspace cesium build-ts && yarn workspace cesium build-docs && yarn workspace cesium build-third-party ",
     "docker-build-local": "node deploy/docker/create-docker-context.js --build --push --tag auto --local",
     "docker-build-prod": "node deploy/docker/create-docker-context.js --build --push --tag auto --repository=ghcr.io/terriajs",
     "docker-build-ci": "node deploy/docker/create-docker-context.js --build",
     "start": "terriajs-server --config-file serverconfig.json",
     "gulp": "gulp",
-    "postinstall": "echo 'Installation successful. What to do next:\\n  yarn gulp dev   # Starts the server on port 3001, builds TerriaMap and dependencies, and rebuilds if files change.'",
+    "postinstall": "yarn workspace cesium build-docs-watch",
     "hot": "webpack-dev-server --inline --config buildprocess/webpack.config.hot.js --hot --host 0.0.0.0",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check ."
